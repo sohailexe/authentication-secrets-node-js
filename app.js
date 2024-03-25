@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 const secretRouter = require("./routes/secret")
 
 const MONGODB_URI =
- "mongodb+srv://Sohail:Sohail%40786@cluster0.h1rnz3h.mongodb.net/userDB?retryWrites=true&w=majority";
+ "";
 
 const app= express()
 
