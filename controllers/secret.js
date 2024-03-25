@@ -3,7 +3,6 @@ const User = require('../models/user')
 // const bcrypt = require('bcrypt')
 
 
-
 exports.getAll = (req, res) => {
   res.render('home')
 }

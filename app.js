@@ -1,12 +1,10 @@
 //jshint esversion:6
+require('dotenv').config()
 const express = require("express")
 const bodyParser = require("body-parser")
 const ejs = require("ejs")
 const mongoose = require("mongoose")
 const secretRouter = require("./routes/secret")
-
-const MONGODB_URI =
- "mongodb+srv://Sohail:Sohail%40786@cluster0.h1rnz3h.mongodb.net/userDB?retryWrites=true&w=majority";
 
 const app= express()
 
@@ -21,7 +19,7 @@ app.use(secretRouter)
 
 mongoose
   .connect(
-    MONGODB_URI
+    process.env.DB_URL
   ).then( (res) =>{
   
 
