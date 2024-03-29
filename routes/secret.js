@@ -7,6 +7,7 @@ router.get("/",secretController.getAll)
 router.get("/login",secretController.getLogin)
 router.get("/logout",secretController.getLogout)
 router.get("/register",secretController.getRegister)
+router.get("/secret",secretController.getSecret)
 
 
 
