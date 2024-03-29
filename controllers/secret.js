@@ -12,7 +12,13 @@ exports.getLogin = (req, res) => {
   res.render('login')
 }
 exports.getLogout = (req, res) => {
-  res.redirect('/')
+  // req.logout();
+  // res.redirect("/")
+
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect("/");
+  })
 }
 
 exports.getRegister = (req, res) => {
@@ -32,12 +38,15 @@ exports.postRegister = async (req, res) => {
   User.register(new User({ email : req.body.email }), req.body.password, function(err, user) {
     if (err) {
         return res.send(err);
+        
+    }else{
+      
+      passport.authenticate('local')(req, res, function () {
+      console.log("abc");
+  
+        res.redirect('/secret');
+      });
     }
-    passport.authenticate('local')(req, res, function () {
-    console.log("abc");
-
-      res.redirect('/secret');
-    });
   });
 };
 
@@ -53,6 +62,7 @@ exports.postLogin = async (req, res) => {
   req.login(user, function(err){
     if (err) {
       console.log(err);
+      res.redirect("/")
     }else{
       passport.authenticate('local')(req,res,function(){
         res.redirect('/secret')
